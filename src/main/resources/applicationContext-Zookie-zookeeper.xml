@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util-3.1.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+  <bean id="zkConnectionProxyFactoryTemplate" class="org.springframework.aop.framework.ProxyFactoryBean" abstract="true">
+    <property name="interceptorNames">
+      <list>
+        <value>zkClientPerformanceInterceptor</value>
+      </list>
+    </property>
+    <property name="proxyTargetClass" value="false" />
+  </bean>
+
+  <bean id="zkClientPerformanceInterceptor" class="org.projectx.zookeeper.Speed4JMethodInterceptor">
+    <constructor-arg ref="zkClientTimer" />
+  </bean>
+
+  <bean id="zkClientTimer" class="org.projectx.zookeeper.Speed4JMethodTimerImpl">
+    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.mode}" />
+    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.jmxString}" />
+    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.serviceName}" />
+    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.slf4jLogName}" />
+    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.period}" />
+  </bean>
+
+  <bean id="zkConnection" class="" parent="zkConnectionProxyFactoryTemplate">
+    <property name="target">
+      <bean class="${org.projectx.zookeeper.connection.class}">
+        <constructor-arg value="${org.projectx.zookeeper.ensemble}" />
+        <constructor-arg value="${org.projectx.zookeeper.session.timeout}" />
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="zkClient" class="org.projectx.zookeeper.ZkClientFactoryBean">
+    <property name="zkConnection" ref="zkConnection" />
+    <property name="connectionTimeout" value="${org.projectx.zookeeper.connect.timeout}" />
+    <property name="stateListeners">
+      <list>
+        <ref local="zkStatsCollector" />
+      </list>
+    </property>
+  </bean>
+
+  <bean id="zkStatsCollector" class="org.projectx.zookeeper.ZooKeeperClientStatsCollector" />
+
+</beans>

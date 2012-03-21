@@ -1,0 +1,9 @@
+target/
+.classpath
+.springBeans
+.project
+.DS_Store
+.settings/
+src/main/webapp/WEB-INF/lib/
+src/main/webapp/WEB-INF/classes/
+.wtpmodules

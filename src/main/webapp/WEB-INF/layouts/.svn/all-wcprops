@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/practi/!svn/ver/1/PractiWebapp/src/main/webapp/WEB-INF/layouts
+END
+menu.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/practi/!svn/ver/1/PractiWebapp/src/main/webapp/WEB-INF/layouts/menu.jsp
+END
+tiles.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/practi/!svn/ver/1/PractiWebapp/src/main/webapp/WEB-INF/layouts/tiles.xml
+END
+page.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/practi/!svn/ver/1/PractiWebapp/src/main/webapp/WEB-INF/layouts/page.jsp
+END
