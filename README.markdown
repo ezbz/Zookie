@@ -95,6 +95,5 @@ hosts: a list of hosts to query (lea
 }
 }
 }
-l would be much appreciated. Contributions are most welcome as well, of course.
 
 Erez Mazor, erezmazor@gmail.com, @mazorE on Twitter
