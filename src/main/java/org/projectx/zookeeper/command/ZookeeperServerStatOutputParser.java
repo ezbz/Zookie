@@ -8,30 +8,33 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
-
 import org.projectx.zookeeper.bean.ZkServerClient;
 import org.projectx.zookeeper.bean.ZkServerMode;
 import org.projectx.zookeeper.bean.ZkServerStat;
 
 /**
- * A necessary evil, parses a server response string of the following format (without the [] line numbers):
+ * A necessary evil, parses a server response string of the following format
+ * (without the [] line numbers):
  * 
  * 
- * For client list some servers have been known to response with or without the enclosing ')' character thus the pattern mess
+ * For client list some servers have been known to response with or without the
+ * enclosing ')' character thus the pattern mess
+ * 
  * <pre>
-[0]Zookeeper version: 3.4.0-1142383, built on 07/03/2011 07:48 GMT
-[1]Clients:
-[2] /127.0.0.1:64947[0](queued=0,recved=1,sent=0)
-[3]Latency min/avg/max: 0/0/233
-[4]Received: 1622
-[5]Sent: 1621
-[6]Outstanding: 0
-[7]Zxid: 0x1700000045
-[8]Mode: follower
-[9]Node count: 42
+ * [0]Zookeeper version: 3.4.0-1142383, built on 07/03/2011 07:48 GMT
+ * [1]Clients:
+ * [2] /127.0.0.1:64947[0](queued=0,recved=1,sent=0)
+ * [3]Latency min/avg/max: 0/0/233
+ * [4]Received: 1622
+ * [5]Sent: 1621
+ * [6]Outstanding: 0
+ * [7]Zxid: 0x1700000045
+ * [8]Mode: follower
+ * [9]Node count: 42
  * </pre>
+ * 
  * @author erez
- *
+ * 
  */
 public class ZookeeperServerStatOutputParser {
   private static final String ATTRIBUTE_DELIMITER = "=";
@@ -61,17 +64,21 @@ public class ZookeeperServerStatOutputParser {
     final Integer sent = parseIntFromLine(iterator.next(), PROP_DELIMITER);
     final Integer outstanding = parseIntFromLine(iterator.next(), PROP_DELIMITER);
     final String zxid = parseStringFromLine(iterator.next(), PROP_DELIMITER);
-    final ZkServerMode mode = ZkServerMode.valueOf(StringUtils.capitalize(parseStringFromLine(iterator.next(), PROP_DELIMITER)));
+    final ZkServerMode mode = ZkServerMode.valueOf(StringUtils.capitalize(parseStringFromLine(
+        iterator.next(), PROP_DELIMITER)));
     final Integer nodeCount = parseIntFromLine(iterator.next(), PROP_DELIMITER);
 
-    return new ZkServerStat(version, buildDate, clients, minLatency, avgLatency, maxLatency, received, sent, outstanding, zxid, mode, nodeCount);
+    return new ZkServerStat(version, buildDate, clients, minLatency, avgLatency, maxLatency,
+        received, sent, outstanding, zxid, mode, nodeCount);
 
   }
 
   /**
-   * Messy but some zookeeper server versions return all clients on the same line and some return them in separate lines, support both
+   * Messy but some zookeeper server versions return all clients on the same
+   * line and some return them in separate lines, support both
    */
-  private List<ZkServerClient> parseClientLines(final String version, final Iterator<String> iterator) {
+  private List<ZkServerClient> parseClientLines(final String version,
+      final Iterator<String> iterator) {
     if (version.contains("3.4.")) {
       return parse34Clients(iterator);
     } else {
@@ -123,7 +130,6 @@ public class ZookeeperServerStatOutputParser {
       matcher = ipv6ClientLinePattern.matcher(line);
       matcher.find();
     }
-
     final String host = matcher.group(1);
     final Integer port = Integer.parseInt(matcher.group(2));
     final Integer ops = Integer.parseInt(matcher.group(3));

@@ -36,7 +36,7 @@ stat: show the ZNode stat
 
 
 {"path":"/services","children":[{"path":"/services/prod","children":[{"path":"/services/prod/ServiceA"},
-{"path":"/outbrain/services/prod/ServiceB"}]}]}
+{"path":"/services/prod/ServiceB"}]}]}
 
 
 ## Stat
