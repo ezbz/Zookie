@@ -57,6 +57,7 @@
 
   <bean id="zookieTreeController" class="org.projectx.zookeeper.controller.ZookieTreeController">
     <constructor-arg ref="zookeeperTreeWalker" />
+    <constructor-arg ref="zkClient" />
   </bean>
   <bean id="zookieServerController" class="org.projectx.zookeeper.controller.ZookieServerController">
     <constructor-arg ref="zookeeperServerCommandManager" />
