@@ -38,6 +38,21 @@ stat: show the ZNode stat
 {"path":"/services","children":[{"path":"/services/prod","children":[{"path":"/services/prod/ServiceA"},
 {"path":"/services/prod/ServiceB"}]}]}
 
+## Update
+
+Http Method: POST
+URL: http://localhost:8080/tree/update?path=/somenode
+
+The content-type header should be set to application/json 
+The post data is the object data to set
+
+## Delete
+
+Http Method: DELETE
+URL: http://localhost:8080/tree/update?path=/somenode&recursive=true
+
+Recursive is false by default, 
+The content-type header should be set to application/json 
 
 ## Stat
 
