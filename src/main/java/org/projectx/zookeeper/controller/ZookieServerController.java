@@ -60,8 +60,13 @@ public class ZookieServerController {
 
     final Map<String, ZkServerStat> result = new HashMap<String, ZkServerStat>();
     for (final String host : hosts) {
-      final String[] hostAndPort = StringUtils.split(host, ":");
-      result.put(host, serverCommandManager.stat(hostAndPort[0], Integer.parseInt(hostAndPort[1])));
+      try {
+        final String[] hostAndPort = StringUtils.split(host, ":");
+        result.put(host,
+            serverCommandManager.stat(hostAndPort[0], Integer.parseInt(hostAndPort[1])));
+      } catch (final Exception e) {
+        log.warn(String.format("exception while executing server stat on: [%s] ", host), e);
+      }
     }
     return result;
   }

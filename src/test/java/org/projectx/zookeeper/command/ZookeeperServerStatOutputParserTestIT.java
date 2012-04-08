@@ -8,9 +8,8 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.core.io.FileSystemResource;
-
 import org.projectx.zookeeper.bean.ZkServerStat;
+import org.springframework.core.io.FileSystemResource;
 
 public class ZookeeperServerStatOutputParserTestIT {
   private List<String> input334;
@@ -19,7 +18,6 @@ public class ZookeeperServerStatOutputParserTestIT {
   private ZookeeperServerStatOutputParser outputParser;
 
   @Before
-  @SuppressWarnings("unchecked")
   public void before() throws IOException {
     input334 = IOUtils.readLines(new FileSystemResource("src/test/resources/stat334.txt").getInputStream());
     input340 = IOUtils.readLines(new FileSystemResource("src/test/resources/stat340.txt").getInputStream());
