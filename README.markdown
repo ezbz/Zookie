@@ -120,6 +120,7 @@ hosts: a list of hosts to query (lea
         }
     }
 ```
+
 ## Environment
 
 Show the server env, parameters
