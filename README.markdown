@@ -10,9 +10,8 @@ Proivdes CRUD operations on the Zookeeper Node Tree via HTTP.
 ## Installation
 * Clone the repository, use 'mvn install' to build the war file, deploy the war file to any J2EE servlet container.
 * To control the ensemble property either modify application.properties before you build or supply the system property for:
-```
-    -Dorg.projectx.zookeeper.ensemble=zk1:2181,zk2:2181
-```
+
+``` -Dorg.projectx.zookeeper.ensemble=zk1:2181,zk2:2181```
 
 ## Examples
 
@@ -130,10 +129,10 @@ hosts: a list of hosts to query (lea
 
 Show the server env, parameters
 
-hosts: a list of hosts to query (lea
-
 * Http Method: GET
 * URL: ```http://localhost:8080/Zookie/server/env```, ```http://localhost:8080/Zookie/server/env?hosts=zk1:2181&zk2:2181```
+
+
 ```
 
 {
@@ -148,7 +147,8 @@ hosts: a list of hosts to query (lea
         }
     }
 }
-```
+
+
 
 
 Erez Mazor, erezmazor@gmail.com, @mazorE on Twitter
