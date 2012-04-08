@@ -102,7 +102,7 @@ hosts: a list of hosts to query (lea
         "buildDate": "01/26/2012 20:09 GMT", 
         "clients": [
             {
-                "host": "192.168.252.34", 
+                "host": "192.168.252.10", 
                 "port": 37668, 
                 "received": 116563, 
                 "sent": 116563, 
@@ -138,7 +138,7 @@ Show the server env, parameters
             "os.arch": "x86_64", 
             "zookeeper.version": "3.4.0-1142383, built on 07/03/2011 07:48 GMT", 
             "java.version": "1.6.0_29", 
-            "java.library.path": "/usr/local/mysql/lib::.:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java", 
+            "java.library.path": ".:/usr/lib/java", 
             "java.vendor": "Apple Inc."
         }
     }
