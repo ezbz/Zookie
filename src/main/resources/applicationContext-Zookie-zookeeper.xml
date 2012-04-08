@@ -22,25 +22,25 @@
   </bean>
 
   <bean id="zkClientTimer" class="org.projectx.zookeeper.Speed4JMethodTimerImpl">
-    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.mode}" />
-    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.jmxString}" />
-    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.serviceName}" />
-    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.slf4jLogName}" />
-    <constructor-arg value="${org.projectx.zookeeper.monitor.speed4j.period}" />
+    <constructor-arg value="${zookeeper.monitor.speed4j.mode}" />
+    <constructor-arg value="${zookeeper.monitor.speed4j.jmxString}" />
+    <constructor-arg value="${zookeeper.monitor.speed4j.serviceName}" />
+    <constructor-arg value="${zookeeper.monitor.speed4j.slf4jLogName}" />
+    <constructor-arg value="${zookeeper.monitor.speed4j.period}" />
   </bean>
 
   <bean id="zkConnection" class="" parent="zkConnectionProxyFactoryTemplate">
     <property name="target">
-      <bean class="${org.projectx.zookeeper.connection.class}">
-        <constructor-arg value="${org.projectx.zookeeper.ensemble}" />
-        <constructor-arg value="${org.projectx.zookeeper.session.timeout}" />
+      <bean class="${zookeeper.connection.class}">
+        <constructor-arg value="${zookeeper.ensemble}" />
+        <constructor-arg value="${zookeeper.session.timeout}" />
       </bean>
     </property>
   </bean>
 
   <bean id="zkClient" class="org.projectx.zookeeper.ZkClientFactoryBean">
     <property name="zkConnection" ref="zkConnection" />
-    <property name="connectionTimeout" value="${org.projectx.zookeeper.connect.timeout}" />
+    <property name="connectionTimeout" value="${zookeeper.connect.timeout}" />
     <property name="stateListeners">
       <list>
         <ref local="zkStatsCollector" />
