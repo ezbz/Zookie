@@ -4,15 +4,15 @@
 Proivdes CRUD operations on the Zookeeper Node Tree via HTTP.
 
 ## Requirements
-* Test with Apache Zookeeper 3.3.2, 3.3.3 and 3.4.0 versions.
+* Test with Apache Zookeeper ```3.3.2```, ```3.3.3``` and ```3.4.0``` versions.
 * Maven for building the war
 
 ## Installation
 * Clone the repository, use 'mvn install' to build the war file, deploy the war file to any J2EE servlet container.
 * To control the ensemble property either modify application.properties before you build or supply the system property for:
-
+```
     -Dorg.projectx.zookeeper.ensemble=zk1:2181,zk2:2181
-
+```
 
 ## Examples
 
@@ -27,9 +27,9 @@ Queries the ZNode tree, parameters:
 3. data: show the data
 4. stat: show the ZNode stat
 
-* URL: ```http://localhost:8080/Zookie/tree```
+* URL: ```http://localhost:8080/Zookie/tree``` 
 ```
-    {
+     {
         "path": "/", 
         "children": [
             {
