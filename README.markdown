@@ -28,6 +28,7 @@ Queries the ZNode tree, parameters:
 4. stat: show the ZNode stat
 
 * URL: ```http://localhost:8080/Zookie/tree``` 
+
 ```
      {
         "path": "/", 
@@ -74,7 +75,8 @@ Queries the ZNode tree, parameters:
 * Http Method: *POST*
 * URL: ```http://localhost:8080/tree/update?path=/somenode```
 
-The content-type header should be set to application/json 
+The content-type header should be set to ```application/json```
+
 The post data is the object data to set
 
 ## Delete
@@ -94,6 +96,7 @@ hosts: a list of hosts to query (lea
 * Http Method: GET
 * URL: ```http://localhost:8080/Zookie/server/stat```, ```http://localhost:8080/Zookie/server/stat?hosts=zk1:2181&zk2:2181```
 ```
+
     {
         "zk01.nydc1:2181": {
             "version": "3.3.4-cdh3u3--1", 
@@ -119,7 +122,9 @@ hosts: a list of hosts to query (lea
             "nodes": 2547
         }
     }
+    
 ```
+
 
 ## Environment
 
@@ -130,6 +135,7 @@ hosts: a list of hosts to query (lea
 * Http Method: GET
 * URL: ```http://localhost:8080/Zookie/server/env```, ```http://localhost:8080/Zookie/server/env?hosts=zk1:2181&zk2:2181```
 ```
+
 {
     "localhost:2181": {
         "attributes": {
@@ -143,4 +149,6 @@ hosts: a list of hosts to query (lea
     }
 }
 ```
+
+
 Erez Mazor, erezmazor@gmail.com, @mazorE on Twitter
