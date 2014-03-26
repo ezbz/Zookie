@@ -1,45 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
     <title>Zookie by ezbz</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/ezbz/Zookie">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/ezbz/Zookie/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/ezbz/Zookie/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
 
-    <div class="wrapper">
+    <header>
+      <div class="container">
+        <h1>Zookie</h1>
+        <h2>A Zookeeper Management and Query Tool</h2>
 
-      <section>
-        <div id="title">
-          <h1>Zookie</h1>
-          <p>A Zookeeper Management and Query Tool</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/ezbz">ezbz</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+        <section id="downloads">
+          <a href="https://github.com/ezbz/Zookie/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/ezbz/Zookie/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/ezbz/Zookie" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
 
+    <div class="container">
+      <section id="main_content">
         <h1>
-<a name="zookie---a-restful-json-interface-to-apache-zookeeper" class="anchor" href="#zookie---a-restful-json-interface-to-apache-zookeeper"><span class="octicon octicon-link"></span></a>Zookie - A RESTful JSON interface to Apache Zookeeper</h1>
+<a name="zookie---rest-json-api-server-interface-to-apache-zookeeper" class="anchor" href="#zookie---rest-json-api-server-interface-to-apache-zookeeper"><span class="octicon octicon-link"></span></a>Zookie - REST JSON API Server interface to Apache Zookeeper</h1>
 
 <h2>
 <a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
@@ -50,7 +40,7 @@
 <a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
 <ul>
-<li>Test with Apache Zookeeper <strong>3.3.2</strong>, <strong>3.3.3</strong> and <strong>3.4.0</strong> versions.</li>
+<li>Test with Apache Zookeeper <strong>3.3.2</strong>, <strong>3.3.3</strong> and <strong>3.4.x</strong> versions.</li>
 <li>Maven for building the war</li>
 </ul><h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -202,9 +192,8 @@ The content-type header should be set to application/json </p>
 
 <p>Erez Mazor, <a href="mailto:erezmazor@gmail.com">erezmazor@gmail.com</a>, @mazorE on Twitter</p>
       </section>
-
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
   </body>
 </html>
