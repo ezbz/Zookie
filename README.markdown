@@ -1,10 +1,10 @@
-# Zookie - A RESTful JSON interface to Apache Zookeeper
+# Zookie - REST JSON API Server interface to Apache Zookeeper
 
 ## Overview
 Proivdes CRUD operations on the Zookeeper Node Tree via HTTP.
 
 ## Requirements
-* Test with Apache Zookeeper **3.3.2**, **3.3.3** and **3.4.0** versions.
+* Test with Apache Zookeeper **3.3.2**, **3.3.3** and **3.4.x** versions.
 * Maven for building the war
 
 ## Installation
