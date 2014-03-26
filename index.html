@@ -38,37 +38,169 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="zookie---a-restful-json-interface-to-apache-zookeeper" class="anchor" href="#zookie---a-restful-json-interface-to-apache-zookeeper"><span class="octicon octicon-link"></span></a>Zookie - A RESTful JSON interface to Apache Zookeeper</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h2>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>Proivdes CRUD operations on the Zookeeper Node Tree via HTTP.</p>
+
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>Test with Apache Zookeeper <strong>3.3.2</strong>, <strong>3.3.3</strong> and <strong>3.4.0</strong> versions.</li>
+<li>Maven for building the war</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ul>
+<li>Clone the repository, use 'mvn install' to build the war file, deploy the war file to any J2EE servlet container.</li>
+<li>To control the ensemble property either modify application.properties before you build or supply the system property for:</li>
+</ul><pre><code>-Dorg.projectx.zookeeper.ensemble=zk1:2181,zk2:2181
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h2>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<h2>
+<a name="tree---query-the-node-tree" class="anchor" href="#tree---query-the-node-tree"><span class="octicon octicon-link"></span></a>Tree - query the node tree</h2>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<ul>
+<li>Http Method: <strong>GET</strong>
+</li>
+</ul><h4>
+<a name="parameters" class="anchor" href="#parameters"><span class="octicon octicon-link"></span></a>Parameters</h4>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<ol>
+<li>root: the root node to start querying from</li>
+<li>depth: the depth of the tree to query (0 for flat single level, -1 for infinite - use with care in large tress)</li>
+<li>data: show the data</li>
+<li><p>stat: show the ZNode stat</p></li>
+</ol><ul>
+<li>URL: <code>http://localhost:8080/Zookie/tree</code> </li>
+</ul><pre><code>{
+    "path": "/", 
+    "children": [
+        {
+            "path": "/storm", 
+            "data": ""
+        }, 
+        {
+            "path": "/zookeeper"
+        }, 
+        {
+            "path": "/services"
+        }
+    ]
+}
+</code></pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<ul>
+<li><p>defaults to a root = /, depth of 1, data = false, stat = false</p></li>
+<li><p>URL:  <code>http://localhost:8080/Zookie/tree?root=/services&amp;depth=2&amp;data=true&amp;stat=true</code></p></li>
+</ul><pre><code>{
+    "path": "/services", 
+    "children": [
+        {
+            "path": "/services/prod", 
+            "children": [
+                {
+                    "path": "/services/prod/ServiceA"
+                }, 
+                {
+                    "path": "/services/prod/ServiceB"
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<h2>
+<a name="update---update-a-nodes-data" class="anchor" href="#update---update-a-nodes-data"><span class="octicon octicon-link"></span></a>Update - update a node's data</h2>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<ul>
+<li>Http Method: <strong>POST</strong>
+</li>
+<li>URL: <code>http://localhost:8080/tree/update?path=/somenode</code>
+</li>
+</ul><p>The content-type header should be set to <strong>application/json</strong></p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>The post data is the object data to set</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<h2>
+<a name="delete---delete-a-node" class="anchor" href="#delete---delete-a-node"><span class="octicon octicon-link"></span></a>Delete - delete a node</h2>
+
+<ul>
+<li>Http Method: <strong>DELETE</strong>
+</li>
+<li>URL:  <code>http://localhost:8080/tree/update?path=/somenode&amp;recursive=true</code>
+</li>
+</ul><p>Recursive is false by default, 
+The content-type header should be set to application/json </p>
+
+<h2>
+<a name="stat---show-the-server-stat-parameters" class="anchor" href="#stat---show-the-server-stat-parameters"><span class="octicon octicon-link"></span></a>Stat - show the server stat, parameters</h2>
+
+<p>hosts: a list of hosts to query (lea</p>
+
+<ul>
+<li>Http Method: GET</li>
+<li>URL:  <code>http://localhost:8080/Zookie/server/stat</code>,  <code>http://localhost:8080/Zookie/server/stat?hosts=zk1:2181&amp;zk2:2181</code>
+</li>
+</ul><pre><code>{
+    "zk01.nydc1:2181": {
+        "version": "3.3.4-cdh3u3--1", 
+        "mode": "Follower", 
+        "buildDate": "01/26/2012 20:09 GMT", 
+        "clients": [
+            {
+                "host": "192.168.252.10", 
+                "port": 37668, 
+                "received": 116563, 
+                "sent": 116563, 
+                "ops": 1, 
+                "queued": 0
+            }
+        ], 
+        "minLatency": 0, 
+        "avgLatency": 0, 
+        "maxLatency": 481, 
+        "received": 13582767, 
+        "sent": 13572817, 
+        "outstanding": 0, 
+        "zxId": "0x8900044da8", 
+        "nodes": 2547
+    }
+}
+</code></pre>
+
+<h2>
+<a name="environment" class="anchor" href="#environment"><span class="octicon octicon-link"></span></a>Environment</h2>
+
+<p>Show the server env, parameters</p>
+
+<ul>
+<li>Http Method: GET</li>
+<li>URL: <code>http://localhost:8080/Zookie/server/env</code>, <code>http://localhost:8080/Zookie/server/env?hosts=zk1:2181&amp;zk2:2181</code>
+</li>
+</ul><pre><code>{
+    "localhost:2181": {
+        "attributes": {
+            ...
+            "os.arch": "x86_64", 
+            "zookeeper.version": "3.4.0-1142383, built on 07/03/2011 07:48 GMT", 
+            "java.version": "1.6.0_29", 
+            "java.library.path": ".:/usr/lib/java", 
+            "java.vendor": "Apple Inc."
+        }
+    }
+}
+</code></pre>
+
+<p>Erez Mazor, <a href="mailto:erezmazor@gmail.com">erezmazor@gmail.com</a>, @mazorE on Twitter</p>
       </section>
 
     </div>
